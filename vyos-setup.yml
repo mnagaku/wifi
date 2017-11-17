@@ -1,7 +1,8 @@
 ---
-- hosts: all
+- hosts: vyos
   connection: docker 
   user: root
+  gather_facts: no
 
   tasks:
     - copy: src=vyos-setup.vsh dest=/root/vyos-setup.vsh

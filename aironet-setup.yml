@@ -1,0 +1,43 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+
+    - ios_config:
+        lines:
+          - dot11 ssid igdaj11g
+
+    - ios_config:
+        lines:
+          - authentication open
+          - authentication key-management wpa version 2
+          - guest-mode
+          - wpa-psk ascii igdaj2017
+        parents: ssid igdaj11g
+
+    - ios_config:
+        lines:
+          - encryption mode ciphers aes-ccm
+          - ssid igdaj11g
+          - no shutdown
+        parents: interface Dot11Radio0
+
+    - ios_config:
+        lines:
+          - dot11 ssid igdaj11a
+
+    - ios_config:
+        lines:
+          - authentication open
+          - authentication key-management wpa version 2
+          - guest-mode
+          - wpa-psk ascii igdaj2017
+        parents: ssid igdaj11a
+
+    - ios_config:
+        lines:
+          - encryption mode ciphers aes-ccm
+          - ssid igdaj11a
+          - no shutdown
+        parents: interface Dot11Radio1
