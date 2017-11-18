@@ -1,43 +1,95 @@
 ---
 - hosts: all
+  connection: local
   gather_facts: no
 
   tasks:
 
+    - tag: ssh-setup
+      telnet:
+      host: "{{ inventory_hostname }}"
+      user: "{{ cisco_default }}}"
+      password: "{{ cisco_default }}}"
+      login_prompt: "Username: "
+      prompts:
+        - "[>|#|Password:|\[512\]:]"
+      command:
+        - enable
+        - "{{ cisco_default }}}"
+        - configure terminal
+        - username "{{ username }}" password "{{ password }}"
+        - line vty 0 4
+        - login local
+        - exit
+        - ip domain-name cisco.com
+        - crypt key generate rsa
+        - 1024
+        - ip ssh version 2
+        - line vty 0 4
+        - transport input ssh
+        - enable secret "{{ auth_pass }}"
+
     - ios_config:
         lines:
-          - dot11 ssid igdaj11g
+          - dot11 ssid "{{ ssid_g }}"
+        provider: "{{ cli }}"
+      tag: setup
 
     - ios_config:
         lines:
           - authentication open
           - authentication key-management wpa version 2
           - guest-mode
-          - wpa-psk ascii igdaj2017
-        parents: ssid igdaj11g
+          - wpa-psk ascii "{{ psk }}"
+        parents: dot11 ssid "{{ ssid_g }}"
+        provider: "{{ cli }}"
+      tag: setup
 
     - ios_config:
         lines:
           - encryption mode ciphers aes-ccm
-          - ssid igdaj11g
+          - ssid "{{ ssid_g }}"
           - no shutdown
         parents: interface Dot11Radio0
+        provider: "{{ cli }}"
+      tag: setup
 
     - ios_config:
         lines:
-          - dot11 ssid igdaj11a
+          - dot11 ssid "{{ ssid_a }}"
+        provider: "{{ cli }}"
+      tag: setup
 
     - ios_config:
         lines:
           - authentication open
           - authentication key-management wpa version 2
           - guest-mode
-          - wpa-psk ascii igdaj2017
-        parents: ssid igdaj11a
+          - wpa-psk ascii "{{ psk }}"
+        parents: dot11 ssid "{{ ssid_a }}"
+        provider: "{{ cli }}"
+      tag: setup
 
     - ios_config:
         lines:
           - encryption mode ciphers aes-ccm
-          - ssid igdaj11a
+          - ssid "{{ ssid_a }}"
           - no shutdown
         parents: interface Dot11Radio1
+        provider: "{{ cli }}"
+      tag: setup
+
+  vars:
+    ssid_g: igdaj11g
+    ssid_a: igdaj11a
+    psk: igdaj2017
+    cisco_default: Cisco
+    username: wifiuser
+    password: wifiuserpass
+    auth_pass: wifiuseradminpass
+    cli:
+      host: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      authorize: true
+      auth_pass: "{{ adminpass }}"
