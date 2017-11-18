@@ -5,35 +5,37 @@
 
   tasks:
 
-    - tag: ssh-setup
-      telnet:
-      host: "{{ inventory_hostname }}"
-      user: "{{ cisco_default }}}"
-      password: "{{ cisco_default }}}"
-      login_prompt: "Username: "
-      prompts:
-        - "[>|#|Password:|\[512\]:]"
-      command:
-        - enable
-        - "{{ cisco_default }}}"
-        - configure terminal
-        - username "{{ username }}" password "{{ password }}"
-        - line vty 0 4
-        - login local
-        - exit
-        - ip domain-name cisco.com
-        - crypt key generate rsa
-        - 1024
-        - ip ssh version 2
-        - line vty 0 4
-        - transport input ssh
-        - enable secret "{{ auth_pass }}"
+    - telnet:
+        host: "{{ inventory_hostname }}"
+        user: "{{ cisco_default }}"
+        password: "{{ cisco_default }}"
+        login_prompt: "Username: "
+        prompts:
+          - "[>|#|Password:|\\[512\\]:]"
+        command:
+          - enable
+          - "{{ cisco_default }}"
+          - configure terminal
+          - username "{{ username }}" password "{{ password }}"
+          - line vty 0 4
+          - login local
+          - exit
+          - ip domain-name cisco.com
+          - crypt key generate rsa
+          - 1024
+          - ip ssh version 2
+          - line vty 0 4
+          - transport input ssh
+          - enable secret "{{ auth_pass }}"
+      tags:
+        - ssh-setup
 
     - ios_config:
         lines:
           - dot11 ssid "{{ ssid_g }}"
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
     - ios_config:
         lines:
@@ -43,7 +45,8 @@
           - wpa-psk ascii "{{ psk }}"
         parents: dot11 ssid "{{ ssid_g }}"
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
     - ios_config:
         lines:
@@ -52,13 +55,15 @@
           - no shutdown
         parents: interface Dot11Radio0
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
     - ios_config:
         lines:
           - dot11 ssid "{{ ssid_a }}"
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
     - ios_config:
         lines:
@@ -68,7 +73,8 @@
           - wpa-psk ascii "{{ psk }}"
         parents: dot11 ssid "{{ ssid_a }}"
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
     - ios_config:
         lines:
@@ -77,7 +83,8 @@
           - no shutdown
         parents: interface Dot11Radio1
         provider: "{{ cli }}"
-      tag: setup
+      tags:
+        - setup
 
   vars:
     ssid_g: igdaj11g
