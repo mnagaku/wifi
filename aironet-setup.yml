@@ -99,4 +99,4 @@
       username: "{{ username }}"
       password: "{{ password }}"
       authorize: true
-      auth_pass: "{{ adminpass }}"
+      auth_pass: "{{ auth_pass }}"

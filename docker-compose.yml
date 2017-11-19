@@ -5,27 +5,27 @@ services:
   vyos:
 	image: mnagaku/vyos
 	restart: always
+	depends_on:
+  	- jupyter
 	volumes:
   	- /lib/modules:/lib/modules
 	container_name: vyos
 	networks:
   	- default
   	- wifi
-  	- wire
 	command: /sbin/init
 	privileged: true
 
   jupyter:
 	image: niicloudoperation/notebook
 	restart: always
-	depends_on:
-  	- vyos
 	volumes:
   	- /var/run/docker.sock:/var/run/docker.sock
 	container_name: jupyter
 	networks:
   	- default
   	- wifi
+  	- wire
 	command: bash -c "git clone --depth 1 https://github.com/mnagaku/wifi.git ; jupyter notebook --NotebookApp.token='wifi'"
 
 networks:
