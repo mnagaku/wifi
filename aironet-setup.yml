@@ -16,6 +16,9 @@
           - enable
           - "{{ cisco_default }}"
           - configure terminal
+          - ntp server ntp.nict.jp
+          - clock timezone JST 9
+          - snmp-server community cacticonnect RO
           - "username {{ set_username }} password {{ set_password }}"
           - line vty 0 4
           - login local
@@ -28,6 +31,7 @@
           - line vty 0 4
           - transport input ssh
           - "enable secret {{ set_auth_pass }}"
+          - "no username {{ cisco_default }}"
       tags:
         - ssh-setup
 

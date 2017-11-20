@@ -4,6 +4,11 @@ source /opt/vyatta/etc/functions/script-template
 configure
 
 
+set system name-server 8.8.8.8
+set system time-zone Asia/Tokyo
+set service snmp community cacticonnect
+
+
 set nat source rule 100 outbound-interface 'eth0'
 set nat source rule 100 source address '192.168.14.0/24'
 set nat source rule 100 translation address masquerade
