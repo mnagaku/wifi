@@ -2,58 +2,70 @@ version: '2'
 
 services:
 
-  vyos:
-	image: mnagaku/vyos
-	restart: always
-	depends_on:
-  	- jupyter
-	volumes:
-  	- /lib/modules:/lib/modules
-	container_name: vyos
-	networks:
-  	- default
-  	- wifi
-	command: /sbin/init
-	privileged: true
-
   jupyter:
-	image: niicloudoperation/notebook
-	restart: always
-	volumes:
-  	- /var/run/docker.sock:/var/run/docker.sock
-	container_name: jupyter
-	networks:
-  	- default
-  	- wifi
-  	- wire
-	command: bash -c "git clone --depth 1 https://github.com/mnagaku/wifi.git ; jupyter notebook --NotebookApp.token='wifi'"
+    image: niicloudoperation/notebook
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: jupyter
+    networks:
+      - default
+      - wifi
+      - wire
+    command: bash -c "git clone --depth 1 https://github.com/mnagaku/wifi.git ; jupyter notebook --NotebookApp.token='wifi'"
+
+  vyos:
+    image: mnagaku/vyos
+    restart: always
+    depends_on:
+      - jupyter
+    volumes:
+      - /lib/modules:/lib/modules
+    container_name: vyos
+    networks:
+      - default
+      - wifi
+    command: /sbin/init
+    privileged: true
+
+  cacti:
+    image: quantumobject/docker-cacti
+    restart: always
+    depends_on:
+      - vyos
+    container_name: cacti
+    networks:
+      - default
+      - wifi
+    environment:
+      TZ: Asia/Tokyo
 
 networks:
 
   wifi:
-	driver: bridge
-	driver_opts:
-  	com.docker.network.bridge.enable_icc: "true"
-  	com.docker.network.bridge.enable_ip_masquerade: "false"
-  	com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
-  	com.docker.network.bridge.name: "br14"
-  	com.docker.network.driver.mtu: "1500"
-	ipam:
-  	driver: default
-  	config:
-    	- subnet: 192.168.14.0/24
-      	gateway: 192.168.14.1
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+      com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
+      com.docker.network.bridge.name: "br14"
+      com.docker.network.driver.mtu: "1500"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.14.0/24
+          gateway: 192.168.14.1
 
   wire:
-	driver: bridge
-	driver_opts:
-  	com.docker.network.bridge.enable_icc: "true"
-  	com.docker.network.bridge.enable_ip_masquerade: "false"
-  	com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
-  	com.docker.network.bridge.name: "br19"
-  	com.docker.network.driver.mtu: "1500"
-	ipam:
-  	driver: default
-  	config:
-    	- subnet: 192.168.19.0/24
-      	gateway: 192.168.19.1
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "false"
+      com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
+      com.docker.network.bridge.name: "br19"
+      com.docker.network.driver.mtu: "1500"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.19.0/24
+          gateway: 192.168.19.1
