@@ -20,6 +20,7 @@
           - line vty 0 4
           - login local
           - exit
+          - "hostname ap{{ inventory_hostname | regex_replace('^.*\\.(\\d*)$','\\1') }}"
           - ip domain-name cisco.com
           - crypt key generate rsa
           - 1024

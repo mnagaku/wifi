@@ -7,3 +7,4 @@
   tasks:
     - copy: src=vyos-setup.vsh dest=/root/vyos-setup.vsh
     - command: vbash /root/vyos-setup.vsh
+    - copy: src=run-command.sh dest=/home/vyos/run-command.sh owner=vyos group=users mode=0755
