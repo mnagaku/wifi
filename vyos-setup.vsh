@@ -44,9 +44,6 @@ set service dns forwarding listen-on 'eth1'
 set service dns forwarding listen-on 'eth2'
 set service dns forwarding name-server '8.8.8.8'
 set service dns forwarding name-server '8.8.4.4'
-set system static-host-mapping host-name ap64 inet 192.168.14.64
-set system static-host-mapping host-name ap83 inet 192.168.14.83
-set system static-host-mapping host-name vyos inet 192.168.14.3
 
 
 commit

@@ -13,6 +13,11 @@ services:
       - wifi
       - wire
     command: bash -c "git clone --depth 1 https://github.com/mnagaku/wifi.git ; jupyter notebook --NotebookApp.token='wifi'"
+    extra_hosts:
+      - "vyos:192.168.14.3"
+      - "munin:192.168.14.4"
+      - "ap64:192.168.14.64"
+      - "ap83:192.168.14.83"
 
   vyos:
     image: mnagaku/vyos
@@ -27,9 +32,14 @@ services:
       - wifi
     command: /sbin/init
     privileged: true
+    extra_hosts:
+      - "jupyter:192.168.14.2"
+      - "munin:192.168.14.4"
+      - "ap64:192.168.14.64"
+      - "ap83:192.168.14.83"
 
   munin:
-    image: buildfailure/munin-server
+    image: shaf/munin-server
     restart: always
     depends_on:
       - vyos
@@ -37,9 +47,15 @@ services:
     networks:
       - default
       - wifi
-    environent:
-      MUNIN_USER: muninuser
-      MUNIN_PASSWORD: muninuserpass
+    environment:
+      ALLOWED_HOSTS: "192.168.0.0/16"
+      HOSTNAME: "munin-node"
+      TZ: "Asia/Tokyo"
+    extra_hosts:
+      - "jupyter:192.168.14.2"
+      - "vyos:192.168.14.3"
+      - "ap64:192.168.14.64"
+      - "ap83:192.168.14.83"
 
 networks:
 
