@@ -18,7 +18,7 @@
           - configure terminal
           - ntp server ntp.nict.jp
           - clock timezone JST 9
-          - snmp-server community cacticonnect RO
+          - snmp-server community muninconnect RO
           - "username {{ set_username }} password {{ set_password }}"
           - line vty 0 4
           - login local

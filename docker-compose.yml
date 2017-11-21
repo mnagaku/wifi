@@ -28,17 +28,18 @@ services:
     command: /sbin/init
     privileged: true
 
-  cacti:
-    image: quantumobject/docker-cacti
+  munin:
+    image: buildfailure/munin-server
     restart: always
     depends_on:
       - vyos
-    container_name: cacti
+    container_name: munin
     networks:
       - default
       - wifi
-    environment:
-      TZ: Asia/Tokyo
+    environent:
+      MUNIN_USER: muninuser
+      MUNIN_PASSWORD: muninuserpass
 
 networks:
 
