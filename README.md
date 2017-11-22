@@ -1,12 +1,13 @@
 # wifi
-vyosコンテナ+aironet1140をjupyterで組み上げる
 
+vyosコンテナ+aironet1140をjupyterで組み上げる。イベント会場などで使えるwifi環境を構築する。
 
-前提条件
+## 動作環境
 
-Debian9(dcoker-compose入り)
+* Debian9(dcoker-compose入り)
+* 物理nicが3本で、下流に繋ぐ2本にブリッジを付けてあること
 
-/etc/network/interfaces
+/etc/network/interfacesの例
 ```
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -45,6 +46,3 @@ bridge_maxwait 0
 bridge_fd 0
 bridge_stp off
 ```
-
-
-
