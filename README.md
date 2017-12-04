@@ -2,6 +2,8 @@
 
 vyosコンテナ+aironet1140をjupyterで組み上げる。イベント会場などで使えるwifi環境を構築する。
 
+![イメージ図](eventwifi.png)
+
 ## 動作環境
 
 * Debian9(dcoker-compose入り)
@@ -46,3 +48,13 @@ bridge_maxwait 0
 bridge_fd 0
 bridge_stp off
 ```
+
+## 事例
+
+![周南市にて](tokuyama_wifi_1126.jpg)
+
+core2duoでギリdockerが動くので、捨てないで置いていたcf-w5が戦列に復帰。jupyter、vyos、muninのコンテナをホスト。
+
+上流回線は、レンタル調達したモバイルルータを、クレードル経由で有線利用。会場が鉄筋建築1階の奥まった場所で電波状態が悪かったので、10Mbpsしか出なかったけど。
+
+クライアントは9台、5台でUnity Collaborate、サーバとのセッションが切れること多かったけど、Collaborateの作りの問題もありそうな感じ。
