@@ -1,0 +1,61 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 632 520">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2"/>
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>blockdiag {
+    node_width = 220;
+    node_height = 120;
+    
+    event-wifi-construct-1st -&gt; event-wifi-construct-jupyter
+    event-wifi-construct-jupyter -&gt; event-wifi-construct-vyos [folded]
+    event-wifi-construct-vyos -&gt; event-wifi-construct-aironet
+    event-wifi-construct-aironet -&gt; event-wifi-construct-munin [folded]
+
+    group {
+        label="&#28310;&#20633;"
+        event-wifi-construct-1st
+        event-wifi-construct-jupyter
+    }
+    group {
+        label="&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#27083;&#31689;"
+        event-wifi-construct-vyos
+        event-wifi-construct-aironet
+    }
+    group {
+        label="&#30435;&#35222;&#31995;&#27083;&#31689;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;."
+        event-wifi-construct-munin
+    }
+}</desc>
+  <rect fill="rgb(243,152,0)" height="140" style="filter:url(#filter_blur)" width="520" x="56" y="30"/>
+  <rect fill="rgb(243,152,0)" height="140" style="filter:url(#filter_blur)" width="520" x="56" y="190"/>
+  <rect fill="rgb(243,152,0)" height="140" style="filter:url(#filter_blur)" width="236" x="56" y="350"/>
+  <rect fill="rgb(0,0,0)" height="120" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="220" x="67" y="46"/>
+  <rect fill="rgb(0,0,0)" height="120" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="220" x="351" y="46"/>
+  <rect fill="rgb(0,0,0)" height="120" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="220" x="67" y="206"/>
+  <rect fill="rgb(0,0,0)" height="120" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="220" x="351" y="206"/>
+  <rect fill="rgb(0,0,0)" height="120" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="220" x="67" y="366"/>
+  <rect fill="rgb(255,255,255)" height="120" stroke="rgb(0,0,0)" width="220" x="64" y="40"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="126">- &#12467;&#12531;&#12486;&#12490;&#12398;&#36215;&#21205;&#30906;&#35469;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="115">- &#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12398;&#30906;&#35469;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="italic" font-weight="normal" font-anchor="middle" x="66" width="216" y="91">&#25216;&#34899;&#30340;&#12394;&#21069;&#25552;&#26465;&#20214;&#12434;&#30906;&#35469;&#12377;&#12427;&#12290;</text><a xlink:href="event-wifi-construct-1st.ipynb"><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="bold" font-anchor="middle" x="66" width="216" y="67">&#21069;&#25552;&#26465;&#20214;&#12398;&#30906;&#35469;</text></a><rect fill="rgb(255,255,255)" height="120" stroke="rgb(0,0,0)" width="220" x="348" y="40"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="350" width="216" y="115">- &#12479;&#12452;&#12512;&#12478;&#12540;&#12531;&#12434;JST&#12395;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="italic" font-weight="normal" font-anchor="middle" x="350" width="216" y="91"></text><a xlink:href="event-wifi-construct-jupyter.ipynb"><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="bold" font-anchor="middle" x="350" width="216" y="67">Jupyter&#12398;&#35373;&#23450;</text></a><rect fill="rgb(255,255,255)" height="120" stroke="rgb(0,0,0)" width="220" x="64" y="200"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="297">- VyOS&#12467;&#12510;&#12531;&#12489;&#12521;&#12483;&#12497;&#12434;&#30906;&#35469;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="286">- Ansible&#12391;&#35373;&#23450;&#12434;&#34892;&#12358;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="275">- &#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12434;&#36861;&#21152;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="italic" font-weight="normal" font-anchor="middle" x="66" width="216" y="251"></text><a xlink:href="event-wifi-construct-vyos.ipynb"><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="bold" font-anchor="middle" x="66" width="216" y="227">VyOS&#12398;&#35373;&#23450;</text></a><rect fill="rgb(255,255,255)" height="120" stroke="rgb(0,0,0)" width="220" x="348" y="200"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="350" width="216" y="308">- Ansible&#12391;WiFi&#12434;&#35373;&#23450;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="350" width="216" y="297">- fingerprint&#12434;&#35352;&#37682;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="350" width="216" y="286">- Ansible&#12391;ssh&#25509;&#32154;&#12434;&#35373;&#23450;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="350" width="216" y="275">- &#25509;&#32154;&#12434;&#30906;&#35469;&#12377;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="italic" font-weight="normal" font-anchor="middle" x="350" width="216" y="251"></text><a xlink:href="event-wifi-construct-aironet.ipynb"><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="bold" font-anchor="middle" x="350" width="216" y="227">Aironet&#12398;&#35373;&#23450;</text></a><rect fill="rgb(255,255,255)" height="120" stroke="rgb(0,0,0)" width="220" x="64" y="360"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="446">- &#12464;&#12521;&#12501;&#25551;&#30011;&#12398;&#12383;&#12417;&#12395;&#26368;&#21021;&#12398;&#12487;&#12540;&#12479;&#12434;&#38598;&#12417;&#12427;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" font-anchor="middle" x="66" width="216" y="435">- vyos&#12289;ap64&#12289;ap83&#12434;snmp&#12391;&#30435;&#35222;&#12377;&#12427;&#35373;&#23450;&#12434;&#34892;&#12358;</text><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="italic" font-weight="normal" font-anchor="middle" x="66" width="216" y="411">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12398;&#31292;&#20685;&#12434;&#12514;&#12491;&#12479;&#12377;&#12427;&#12398;&#12395;munin&#12434;&#20351;&#12358;&#12290;</text><a xlink:href="event-wifi-construct-munin.ipynb"><text fill="rgb(0,0,0)" font-family="sans-serif" font-size="14" font-style="normal" font-weight="bold" font-anchor="middle" x="66" width="216" y="387">munin&#12398;&#35373;&#23450;</text></a><path d="M 284 100 L 340 100" fill="none" stroke="rgb(0,0,0)"/>
+  <polygon fill="rgb(0,0,0)" points="347,100 340,96 340,104 347,100" stroke="rgb(0,0,0)"/>
+  <path d="M 458 160 L 458 180" fill="none" stroke="rgb(0,0,0)"/>
+  <path d="M 174 180 L 458 180" fill="none" stroke="rgb(0,0,0)"/>
+  <path d="M 174 180 L 174 192" fill="none" stroke="rgb(0,0,0)"/>
+  <polygon fill="rgb(0,0,0)" points="174,199 170,192 178,192 174,199" stroke="rgb(0,0,0)"/>
+  <path d="M 284 260 L 340 260" fill="none" stroke="rgb(0,0,0)"/>
+  <polygon fill="rgb(0,0,0)" points="347,260 340,256 340,264 347,260" stroke="rgb(0,0,0)"/>
+  <path d="M 458 320 L 458 340" fill="none" stroke="rgb(0,0,0)"/>
+  <path d="M 174 340 L 458 340" fill="none" stroke="rgb(0,0,0)"/>
+  <path d="M 174 340 L 174 352" fill="none" stroke="rgb(0,0,0)"/>
+  <polygon fill="rgb(0,0,0)" points="174,359 170,352 178,352 174,359" stroke="rgb(0,0,0)"/>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="22" x="316" y="36">&#28310;&#20633;</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="88" x="316" y="196">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#27083;&#31689;</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="124" x="174" y="356">&#30435;&#35222;&#31995;&#27083;&#31689;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;.</text>
+</svg>
